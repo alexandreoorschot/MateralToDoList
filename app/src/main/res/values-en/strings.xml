@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Material ToDo List - Android ATC-consider spanish</string>
+    <string name="hello_world">Hello Material Design-consider spanish</string>
+    <string name="action_settings">Settings-consider spanish</string>
+    <string name="addItemHint">New Item-consider spanish</string>
+    <string name="transition_name">ListToDetails-consider spanish</string>
+</resources>

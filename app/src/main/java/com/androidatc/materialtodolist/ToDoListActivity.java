@@ -1,5 +1,7 @@
 package com.androidatc.materialtodolist;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,7 +54,26 @@ public class ToDoListActivity extends AppCompatActivity {
                     mItemListAdapter.notifyDataSetChanged();
                     return true;
                 }
-
+            });
+        mDynamicListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                mAddButton.hide();
+                String transitionName = getString(R.string.transition_name);
+                View sharedView = view.findViewById(R.id.listItemText);
+                Intent intent = new Intent(ToDoListActivity.this, ToDoDetailsActivity.class);
+                String textOfClickedItem = mItemListAdapter.getItem(position);
+                intent.putExtra("name", textOfClickedItem);
+                ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(ToDoListActivity.this, sharedView, transitionName);
+                startActivity(intent, transitionActivityOptions.toBundle());
+            }
         });
     }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mAddButton.show();
+    }
+
 }
